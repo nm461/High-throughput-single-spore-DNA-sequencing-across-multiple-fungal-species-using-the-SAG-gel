@@ -1,10 +1,4 @@
-# Software versions for core pipeline scripts
-
-This file records the software versions used or implied by the core SAG-gel
-pipeline scripts. Versions marked "verify from container" should be checked
-from the exact Apptainer/Singularity image used for the final analysis run.
-
-## Explicitly recorded versions
+## Software versions used in pipeline scripts
 
 Python: 3.12.3
 SciPy: 1.11.4
@@ -17,25 +11,11 @@ SPAdes: 4.2.0
 BWA-MEM: 0.7.17
 SAMtools: 1.22.1
 BUSCO lineage dataset: fungi_odb10
-
-## Versions inferred from script/container names
-
 BUSCO: 6.0.0
-  Evidence: scripts use busco_v6.0.0_cv1.sif.
-
 BLAST+: 2.15.0
-  Evidence: scripts load blast+/2.15.0.
 
-RepeatMasker: 4.1.6
-  Evidence: scripts load repeatmasker/4.1.6, although RepeatMasker is not used in the final core workflow.
 
-rmblast: 2.14.1
-  Evidence: scripts add rmblast-2.14.1 to PATH.
-
-## Containerized tools to verify from the final run environment
-
-The following tools are run from Apptainer/Singularity images in SIF_DIR. Record
-the exact executable version from the image used for the archived analysis:
+## Containerized tools -- The following tools are run from Apptainer/Singularity images 
 
 fastp.sif
 bwa.sif
@@ -48,21 +28,6 @@ busco_v6.0.0_cv1.sif
 mosdepth.sif
 sourmash.sif
 
-Suggested commands:
-
-```bash
-singularity exec "$SIF_DIR/fastp.sif" fastp --version
-singularity exec "$SIF_DIR/bwa.sif" bwa 2>&1 | head -5
-singularity exec "$SIF_DIR/samtools.sif" samtools --version
-singularity exec "$SIF_DIR/rasusa.sif" rasusa --version
-singularity exec "$SIF_DIR/kraken2.sif" kraken2 --version
-singularity exec "$SIF_DIR/pilon.sif" java -jar /pilon/pilon.jar --version
-singularity exec "$SIF_DIR/seqkit.sif" seqkit version
-singularity exec "$SIF_DIR/busco_v6.0.0_cv1.sif" busco --version
-singularity exec "$SIF_DIR/mosdepth.sif" mosdepth --version
-singularity exec "$SIF_DIR/sourmash.sif" sourmash --version
-java -jar "$PICARD_JAR" MarkDuplicates --version
-```
 
 ## Python packages installed by the scripts
 
@@ -76,12 +41,4 @@ seaborn
 biopython
 scipy
 PyPDF2
-
-For a final archive, replacing the unpinned package install lines with a
-frozen `requirements.txt` from the analysis environment is recommended:
-
-```bash
-source "$OUT_ROOT/shared_venv/bin/activate"
-pip freeze > requirements.txt
-```
 
