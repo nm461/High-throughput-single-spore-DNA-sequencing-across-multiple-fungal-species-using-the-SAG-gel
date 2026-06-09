@@ -2,7 +2,7 @@
 
 These scripts document the core computational workflows used for the SAG-gel single-spore fungal genomics study. They are intended as reproducibility scripts for manuscript review/publication, not as polished general-purpose software.
 
-The scripts were originally run on an SGE cluster with Apptainer/Singularity containers. Personal absolute input/output paths have been replaced with environment variables so the same commands can be rerun on another system using deposited FASTQ files, reference assemblies, and database resources.
+The scripts were originally run on an SGE cluster with Apptainer/Singularity containers. 
 
 ## Scripts
 
@@ -140,10 +140,6 @@ OUT_ROOT/
 | `REF_SOURCE` | Reference FASTA used by `Referencemapping.sh`. |
 | `REFERENCE_MASTER` | Comparator mapping table used to define the normalization target for reference-mapping comparisons. |
 | `SUBSET_SIZE`, `MIN_SAG`, `MAX_SAG`, `BASE_SEED` | Co-assembly bootstrap subset settings. |
-
-## Notes for Reproducibility
-
-The scripts intentionally keep the exact workflow order, tool choices, and major thresholds used in the manuscript analyses. They use environment variables for paths so that deposited datasets can be substituted without modifying script internals.
 
 Some resources are large and are not included in this script bundle, including reference FASTA files, raw FASTQ files, Kraken2 databases, Sourmash databases, BUSCO lineage files, and Apptainer/Singularity images. These should be cited or described separately in the manuscript data availability statement.
 
